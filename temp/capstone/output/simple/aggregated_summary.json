@@ -1,0 +1,177 @@
+[
+  {
+    "region": "North",
+    "category": "Books",
+    "order_count": 4837,
+    "net_revenue": 610674.5,
+    "gross_margin": 427472.74
+  },
+  {
+    "region": "North",
+    "category": "Electronics",
+    "order_count": 4734,
+    "net_revenue": 10373988.47,
+    "gross_margin": 7261792.9
+  },
+  {
+    "region": "North",
+    "category": "Clothing",
+    "order_count": 4640,
+    "net_revenue": 1325037.89,
+    "gross_margin": 927526.86
+  },
+  {
+    "region": "East",
+    "category": "Clothing",
+    "order_count": 4493,
+    "net_revenue": 1308675.45,
+    "gross_margin": 916073.63
+  },
+  {
+    "region": "Central",
+    "category": "Books",
+    "order_count": 4649,
+    "net_revenue": 591269.3,
+    "gross_margin": 413889.19
+  },
+  {
+    "region": "East",
+    "category": "Home & Kitchen",
+    "order_count": 4727,
+    "net_revenue": 3010767.38,
+    "gross_margin": 2107538.24
+  },
+  {
+    "region": "West",
+    "category": "Electronics",
+    "order_count": 4567,
+    "net_revenue": 9981294.22,
+    "gross_margin": 6986906.69
+  },
+  {
+    "region": "North",
+    "category": "Sports",
+    "order_count": 4714,
+    "net_revenue": 1517133.34,
+    "gross_margin": 1061994.32
+  },
+  {
+    "region": "North",
+    "category": "Home & Kitchen",
+    "order_count": 4660,
+    "net_revenue": 2915016.73,
+    "gross_margin": 2040512.91
+  },
+  {
+    "region": "Central",
+    "category": "Clothing",
+    "order_count": 4542,
+    "net_revenue": 1303737.21,
+    "gross_margin": 912616.84
+  },
+  {
+    "region": "Central",
+    "category": "Electronics",
+    "order_count": 4700,
+    "net_revenue": 10382348.71,
+    "gross_margin": 7267644.78
+  },
+  {
+    "region": "South",
+    "category": "Books",
+    "order_count": 4748,
+    "net_revenue": 597585.68,
+    "gross_margin": 418310.93
+  },
+  {
+    "region": "South",
+    "category": "Home & Kitchen",
+    "order_count": 4682,
+    "net_revenue": 2984024.53,
+    "gross_margin": 2088818.27
+  },
+  {
+    "region": "South",
+    "category": "Sports",
+    "order_count": 4551,
+    "net_revenue": 1468784.11,
+    "gross_margin": 1028149.63
+  },
+  {
+    "region": "East",
+    "category": "Books",
+    "order_count": 4734,
+    "net_revenue": 601523.85,
+    "gross_margin": 421067.48
+  },
+  {
+    "region": "Central",
+    "category": "Home & Kitchen",
+    "order_count": 4575,
+    "net_revenue": 2915848.6,
+    "gross_margin": 2041094.78
+  },
+  {
+    "region": "West",
+    "category": "Books",
+    "order_count": 4660,
+    "net_revenue": 584091.58,
+    "gross_margin": 408864.74
+  },
+  {
+    "region": "Central",
+    "category": "Sports",
+    "order_count": 4591,
+    "net_revenue": 1426365.02,
+    "gross_margin": 998456.31
+  },
+  {
+    "region": "South",
+    "category": "Clothing",
+    "order_count": 4726,
+    "net_revenue": 1342995.53,
+    "gross_margin": 940097.9
+  },
+  {
+    "region": "South",
+    "category": "Electronics",
+    "order_count": 4692,
+    "net_revenue": 10694579.05,
+    "gross_margin": 7486206.43
+  },
+  {
+    "region": "West",
+    "category": "Sports",
+    "order_count": 4676,
+    "net_revenue": 1485736.7,
+    "gross_margin": 1040016.49
+  },
+  {
+    "region": "West",
+    "category": "Clothing",
+    "order_count": 4613,
+    "net_revenue": 1302449.19,
+    "gross_margin": 911715.33
+  },
+  {
+    "region": "East",
+    "category": "Sports",
+    "order_count": 4663,
+    "net_revenue": 1452246.84,
+    "gross_margin": 1016573.68
+  },
+  {
+    "region": "East",
+    "category": "Electronics",
+    "order_count": 4610,
+    "net_revenue": 10018183.54,
+    "gross_margin": 7012728.76
+  },
+  {
+    "region": "West",
+    "category": "Home & Kitchen",
+    "order_count": 4617,
+    "net_revenue": 2963611.43,
+    "gross_margin": 2074528.96
+  }
+]

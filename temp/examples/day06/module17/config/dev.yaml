@@ -1,0 +1,21 @@
+database:
+  host: "localhost"
+  port: 5432
+  name: "orders_dev"
+  user: "pipeline_user"
+  password: "dev_password_only"
+
+paths:
+  input:  "/data/dev/raw/orders.csv"
+  output: "/data/dev/processed/orders_out.csv"
+
+pipeline:
+  batch_size: 100
+  enable_deduplication: false
+  log_level: "DEBUG"
+
+features:
+  enable_deduplication: true
+  enable_schema_validation: false
+  enable_audit_trail: false
+  use_legacy_date_parser: true

@@ -1,0 +1,37 @@
+# config/prod.yaml
+# Production environment – full dataset, INFO logging, higher parallelism.
+# Module 17: decouples runtime behaviour from code.
+
+pipeline:
+  name: "Sales Analytics Pipeline [PROD]"
+  env: prod
+
+source:
+  type: csv
+  path: "./data/sales_raw.csv"
+  encoding: utf-8
+  chunk_size: 10000
+
+output:
+  dir: "./output/prod"
+  cleaned_csv:  "cleaned_sales.csv"
+  summary_json: "aggregated_summary.json"
+  report_md:    "pipeline_report.md"
+
+logging:
+  level: INFO
+  log_dir: "./logs"
+  log_file: "pipeline_prod.log"
+
+parallel:
+  max_workers: 4                       # more workers in prod
+  chunk_size: 20000
+
+async:
+  max_concurrent: 8
+  request_timeout_s: 10
+
+validation:
+  max_discount: 1.0
+  max_quantity: 500
+  min_price: 0.01

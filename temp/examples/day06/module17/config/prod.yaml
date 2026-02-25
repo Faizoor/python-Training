@@ -1,0 +1,15 @@
+database:
+  host: "prod-db.internal.company.com"
+  port: 5432
+  name: "orders_production"
+  user: "pipeline_svc"
+  password: "${DB_PASSWORD}"
+
+paths:
+  input:  "/mnt/data/raw/orders.csv"
+  output: "/mnt/data/processed/orders_out.csv"
+
+pipeline:
+  batch_size: 5000
+  enable_deduplication: true
+  log_level: "WARNING"
