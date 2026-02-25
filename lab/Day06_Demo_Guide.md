@@ -461,11 +461,15 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 
-@dataclass
+@dataclass(eq=False)   # disable auto-generated __eq__ — we define identity ourselves
 class User:
     """
     Represents a validated, normalized user record in the pipeline.
     Validation and transformation logic lives inside the entity.
+
+    Identity rule: two User objects are equal when their `id` matches,
+    regardless of how name/email were normalized from the raw source.
+    This follows the Entity pattern from Domain-Driven Design (DDD).
     """
     id:     str
     name:   str
@@ -487,6 +491,24 @@ class User:
         self.email = self.email.strip().lower()
         self.domain = self.email.split("@")[-1]
 
+    # --- Identity-based equality -------------------------------------------
+    # @dataclass default __eq__ compares ALL fields (id, name, email, domain).
+    # For an Entity, equality is determined by the primary key (`id`) alone.
+    # Two User records with the same id are the same entity even if the name
+    # arrived with different whitespace or casing from different sources.
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, User):
+            return NotImplemented
+        return self.id == other.id
+
+    def __hash__(self) -> int:
+        # Must define __hash__ whenever __eq__ is overridden so that User
+        # objects can be placed in sets or used as dict keys correctly.
+        return hash(self.id)
+
+    # -----------------------------------------------------------------------
+
     @classmethod
     def from_dict(cls, record: dict) -> "User":
         """
@@ -507,6 +529,26 @@ class User:
             "domain": self.domain,
         }
 ```
+
+> **Why `eq=False` + custom `__eq__`?**
+> By default, `@dataclass` generates `__eq__` that compares every field. That is correct for **Value Objects** (e.g., a `Money(amount=10, currency="USD")` tuple) but wrong for **Entities**. An Entity's identity is its primary key (`id`). If the same user arrives from two different sources with slightly different raw formatting, the pipeline should still recognise them as the same record — `user_a == user_b` should rely only on `id`.
+>
+> Defining `__hash__` is mandatory whenever you override `__eq__`. Without it, Python sets `__hash__ = None`, making `User` unhashable — you could no longer put users in a `set()` or use them as dict keys for deduplication.
+>
+> **Contrast:**
+> ```python
+> # Value Object — compare all fields (dataclass default is fine)
+> @dataclass
+> class EmailAddress:
+>     local: str
+>     domain: str
+>
+> # Entity — compare by primary key only (override __eq__ / __hash__)
+> @dataclass(eq=False)
+> class User:
+>     id: str
+>     ...
+> ```
 
 ### Step 3: Use the Entity in the Pipeline
 
