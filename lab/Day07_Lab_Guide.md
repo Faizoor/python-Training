@@ -215,6 +215,15 @@ if __name__ == '__main__':
 - No blocking synchronous I/O inside coroutines.
 - Proper use of `async`/`await` and event loop.
 
+## Extension Tasks (stdlib usage)
+These tasks extend the lab to cover real-world stdlib modules within the async context:
+5. Replace `asyncio.sleep()` with real HTTP fetches using `urllib.request.urlopen` run via `loop.run_in_executor(ThreadPoolExecutor(), ...)`. Fetch 5 public URLs concurrently.
+6. After a batch completes, call a `send_pipeline_alert(subject, body, dry_run=True)` helper built with `smtplib.SMTP` + `email.mime.text.MIMEText`. Verify the email content is correctly assembled without a real SMTP server.
+7. Calculate a quality score for the results using `math.log1p` (penalise null/missing values) and display it.
+8. Use `random.sample` to select a random 30% subset of fetched records for a downstream transformation step.
+
+> See `demo_stdlib_async.py` for the reference implementation of all four points.
+
 ---
 
 # Lab 6: Hybrid Pipeline (Async I/O + ProcessPoolExecutor CPU)
@@ -380,8 +389,11 @@ Write unit tests for pipeline components, including parametrized tests, fixtures
 ## Starter Code (tests/test_validation.py)
 ```python
 import pytest
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from mypipeline import validate_row
+# Import from lab7_exceptions.py (rename to mypipeline.py if building a standalone module)
+from lab7_exceptions import validate_row, DataValidationError
 
 @pytest.fixture
 def sample_row():
@@ -392,7 +404,7 @@ def test_validate_ok(sample_row):
 
 @pytest.mark.parametrize('bad_row', [{}, {'value': 1}])
 def test_validate_raises(bad_row):
-    with pytest.raises(Exception):
+    with pytest.raises(DataValidationError):
         validate_row(bad_row)
 
 ```
@@ -409,7 +421,3 @@ def test_validate_raises(bad_row):
 - Each lab is intentionally procedural: implement one piece, run it, add logging and tests, then compose into the next lab.
 - Keep functions small and testable; avoid large monolithic scripts.
 - Where applicable, prefer configuration-driven behavior (timeouts, max attempts, pool sizes).
-
-If you want, I can also:
-- Add a minimal `requirements.txt` or `pyproject.toml` for running tests and examples.
-- Create small starter modules in `temp/` that map to each lab for quick iteration.
